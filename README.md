@@ -80,9 +80,11 @@ To get a local copy up and running follow these simple steps.
 
 ### Installation
 
-1. Clone the repo
+1. Clone the repo and cd to its root directory
    ```sh
    git clone https://github.com/fabio-mancin/recycle.git
+
+   cd recycle
    ```
 2. Install composer dependencies
    ```sh
@@ -93,6 +95,9 @@ To get a local copy up and running follow these simple steps.
    npm install
    ```
 5. Copy ".env.example" from the root folder and rename the copy to ".env".
+   ```sh
+   cp .env.example .env
+   ```
 
 6. Generate an app encryption key
    ```sh
@@ -101,6 +106,14 @@ To get a local copy up and running follow these simple steps.
 7. Create an empty database: depending on your setup and system this may vary; you can refer to the [official documentation](https://dev.mysql.com/doc/refman/8.0/en/creating-database.html) or follow the instruction for the software you are using to handle MySQL. The name doesn't matter, I called mine "recycle" for consistency.
 
 8. Update .env with your database connection settings in order to give the app access to it. In the .env file fill in the DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, and DB_PASSWORD options to match the credentials of the database you just created.
+   ```sh
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE= yourDatabaseName
+   DB_USERNAME= yourRootUsername
+   DB_PASSWORD= yourPassword
+   ```
 
 9. Run migrations:
    ```sh
