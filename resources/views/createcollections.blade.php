@@ -30,7 +30,7 @@
                         <tbody id="collection-table-body">
                             <tr class="new-collection-row">
                                 <td>
-                                    <select name="garbage_type[]" class="form-select" form="collections-form">
+                                    <select name="collections[]" class="form-select" form="collections-form" required>
                                         <option selected>Select a garbage type</option>
                                         @foreach ($types as $type)
                                             <option value={{$type->id}}>{{$type->type}}</option>
@@ -38,7 +38,7 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="day[]" class="form-select" form="collections-form">
+                                    <select name="collections[]" class="form-select" form="collections-form" required>
                                         <option selected>Select a day</option>
                                         @foreach ($days as $day)
                                             <option value={{$day->id}}>{{$day->name}}</option>
@@ -50,7 +50,8 @@
                                         class="form-control"
                                         name="collections[]"
                                         form="collections-form"
-                                        placeholder="09:00-10:00 // 'Morning'">
+                                        placeholder="09:00-10:00 // 'Morning'"
+                                        required>
                                 </td>
                             </tr>
                         </tbody>
@@ -59,32 +60,6 @@
             <button type="button" id="new-row" class="btn btn-block btn-secondary">New Row</button>
         
         </div>
-    </div>
-
-    <div id="new-collection-row-template">
-        <td>
-            <select name="garbage_type[]" class="form-select" form="collections-form">
-                <option selected>Select a garbage type</option>
-                @foreach ($types as $type)
-                    <option value={{$type->id}}>{{$type->type}}</option>
-                @endforeach
-            </select>
-        </td>
-        <td>
-            <select name="day[]" class="form-select" form="collections-form">
-                <option selected>Select a day</option>
-                @foreach ($days as $day)
-                    <option value={{$day->id}}>{{$day->name}}</option>
-                @endforeach
-            </select>
-        </td>
-        <td>
-            <input type="text" 
-                class="form-control"
-                name="collections[]"
-                form="collections-form"
-                placeholder="09:00-10:00 // 'Morning'">
-        </td>
     </div>
 </div>
 @endsection

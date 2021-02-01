@@ -9,4 +9,8 @@ class Day extends Model
 {
     use HasFactory;
     protected $fillable = ['name'];
+    public function collection()
+    {
+        return $this->hasMany(Collection::class);
+    }
 }

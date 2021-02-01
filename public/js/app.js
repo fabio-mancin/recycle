@@ -1844,10 +1844,20 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 $(function () {
   $("#new-row").on("click", function () {
-    var newRow = document.createElement("tr");
-    newRow.innerHTML = $("#new-collection-row-template").html();
-    newRow.className = "new-collection-row";
+    var newRow = $(".new-collection-row:first").clone();
+    console.log(newRow);
     $("#collection-table-body").prepend(newRow);
+  });
+  $("#filter-day").on("change", function (e) {
+    var todayNumberInWeek = new Date().getDay();
+    var todayRows = $(".day-row[data-number-in-week=\"".concat(todayNumberInWeek, "\""));
+
+    if ($(e.target).is(":checked")) {
+      $(".day-row").hide();
+      todayRows.show();
+    } else {
+      $(".day-row").show();
+    }
   });
 });
 

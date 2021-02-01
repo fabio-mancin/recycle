@@ -3,6 +3,7 @@
 @section('content')
 
   <div class="main">
+      <h1> Recycle Collection Recap </h1>
       <table class="table">
           <thead>
               <tr>
@@ -13,14 +14,18 @@
           </thead>
           <tbody>
               @foreach ($collections as $collection)
-              <tr>
-                  <td>{{'$day->name'}}</td>
-                  <td>SOMETHING</td>
-                  <td>SOMETIME</td>
-              </tr>
+                <tr class="day-row" data-number-in-week="{{$collection->number_in_week}}">
+                    <td>{{$collection->day}}</td>
+                    <td>{{$collection->type}}</td>
+                    <td>{{$collection->time}}</td>
+                </tr>
               @endforeach
           </tbody>
       </table>
+      <div class="filter-day-container">
+        <input type="checkbox" id="filter-day" />
+        <label for="filter-day" class="ml-1">Show today only.</label>
+      </div>
       <form action="{{route('days.create')}}">
           <button class="btn btn-warning" type="submit">Setup</button>
       </form>

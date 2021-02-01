@@ -7,7 +7,7 @@ use App\Http\Controllers\CollectionController;
 
 //Root route redirects
 Route::get('/', function () {
-    return view('index');
+    return view('collections');
 })->middleware('setup');
 
 //Why would you type index into the URL? Well, I got that covered too.

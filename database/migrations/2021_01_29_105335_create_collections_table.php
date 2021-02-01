@@ -16,7 +16,7 @@ class CreateCollectionsTable extends Migration
         Schema::create('collections', function (Blueprint $table) {
             $table->increments('id');
             $table->string('time');
-            $table->foreignId('days_id')->constrained();
+            $table->foreignId('days_id')->constrained('days');
             $table->foreignId('garbage_id')->constrained();
             $table->timestamps();
         });

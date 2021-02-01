@@ -29,4 +29,12 @@
 
 #new-collection-row-template {
     display: none;
+    border-collapse: none;
+}
+
+.filter-day-container {
+    display: flex;
+    align-self: flex-start;
+    justify-content: center;
+    align-items: center;
 }

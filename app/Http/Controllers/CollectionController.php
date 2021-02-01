@@ -17,6 +17,13 @@ class CollectionController extends Controller
     public function index()
     {
         $collections = Collection::all();
+
+        foreach ($collections as $collection) {
+            $collection->day = ucfirst(DB::table('days')->where('id', $collection->days_id)->value('name'));
+            $collection->number_in_week = DB::table('days')->where('id', $collection->days_id)->value('number_in_week');
+            $collection->type = ucfirst(DB::table('garbage__types')->where('id', $collection->garbage_id)->value('type'));   
+        }
+
         return view('index', compact('collections'));
     }
 
@@ -42,9 +49,32 @@ class CollectionController extends Controller
      */
     public function store(Request $request)
     {
-        Log::channel('stderr')->info($request);
+        function saveCollection($collection) {
+            $new_collection = new Collection;
+            $new_collection->time = $collection[2];
+            $new_collection->days_id = $collection[0];
+            $new_collection->garbage_id = $collection[1];
+            $new_collection->save();
+        }
 
-        return redirect('/collections/create');
+        $collections = $request->validate([
+            "collections" => "required|array|min:1"
+        ]);
+        
+        $collections = $collections["collections"];
+
+        if (count($collections)>3){
+            $collections = array_chunk($collections, 3);
+            foreach ($collections as $collection) {
+                Log::channel('stderr')->info($collection);
+                saveCollection($collection);
+            }   
+            return redirect('index');
+        } 
+
+        saveCollection($collections);
+
+        return redirect('index');
     }
 
     /**
