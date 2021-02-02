@@ -38,3 +38,12 @@
     justify-content: center;
     align-items: center;
 }
+
+.card-header {
+   font-weight: bold;
+}
+
+h1 {
+    font-size: 3ch;
+    font-weight: bold;
+}

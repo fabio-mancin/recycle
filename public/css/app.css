@@ -31204,6 +31204,15 @@ video {
   align-items: center;
 }
 
+.card-header {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 3ch;
+  font-weight: bold;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

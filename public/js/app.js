@@ -1845,7 +1845,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 $(function () {
   $("#new-row").on("click", function () {
     var newRow = $(".new-collection-row:first").clone();
-    console.log(newRow);
+    newRow[0].children[2].children[0].value = "";
     $("#collection-table-body").prepend(newRow);
   });
   $("#filter-day").on("change", function (e) {
@@ -1858,6 +1858,14 @@ $(function () {
     } else {
       $(".day-row").show();
     }
+  });
+  $(".filter-collections").on("keyup", function (e) {
+    var filterValue = $(this).val().toLowerCase();
+    var filterData = $(this)[0].dataset.col;
+    if (e.key === 'Tab') return false;
+    $(".collection-".concat(filterData)).each(function (i, e) {
+      $(this).parent().toggle(e.innerText.toLowerCase().includes(filterValue));
+    });
   });
 });
 

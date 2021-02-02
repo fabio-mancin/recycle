@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Collection;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 class CollectionController extends Controller
 {
@@ -23,6 +24,8 @@ class CollectionController extends Controller
             $collection->number_in_week = DB::table('days')->where('id', $collection->days_id)->value('number_in_week');
             $collection->type = ucfirst(DB::table('garbage__types')->where('id', $collection->garbage_id)->value('type'));   
         }
+
+        $collections = $collections->sortBy('number_in_week');
 
         return view('index', compact('collections'));
     }
@@ -50,11 +53,23 @@ class CollectionController extends Controller
     public function store(Request $request)
     {
         function saveCollection($collection) {
-            $new_collection = new Collection;
-            $new_collection->time = $collection[2];
+            $new_collection = new Collection;          
             $new_collection->days_id = $collection[0];
             $new_collection->garbage_id = $collection[1];
-            $new_collection->save();
+            $new_collection->time = $collection[2];
+            $day = ucfirst(DB::table('days')->where('id', $collection[0])->value('name'));
+
+            if (!Collection::select("*")
+                ->where("days_id", "=", $collection[0])
+                ->where("time", "=", $collection[2])
+                ->exists()) {
+                    Log::channel('stderr')->info("VALUE OK");
+                    $new_collection->save();
+                } else {
+                    Log::channel('stderr')->info("ERROR");
+                    throw ValidationException::withMessages(['Error!' => 
+                        "A collection already exists on {$day} at {$collection[2]}."]);
+                }        
         }
 
         $collections = $request->validate([

@@ -57,8 +57,10 @@
                         </tbody>
                 </table>
             <button type="submit" class="btn btn-block btn-danger" form="collections-form">Save</button>
-            <button type="button" id="new-row" class="btn btn-block btn-secondary">New Row</button>
-        
+            <button type="button" id="new-row" class="btn btn-block btn-info">New Row</button>
+            <a href="{{route('collections.index')}}">
+                <button type="button" class="btn btn-block btn-secondary">Skip</button>
+            </a>
         </div>
     </div>
 </div>
