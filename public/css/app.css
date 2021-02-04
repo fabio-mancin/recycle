@@ -31192,11 +31192,6 @@ video {
   flex-direction: column;
 }
 
-#new-collection-row-template {
-  display: none;
-  border-collapse: none;
-}
-
 .filter-day-container {
   display: flex;
   align-self: flex-start;
@@ -31211,6 +31206,30 @@ video {
 h1 {
   font-size: 3ch;
   font-weight: bold;
+}
+
+.buttons-line {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.skip-button {
+  margin-left: auto;
+}
+
+.edit-button {
+  margin-left: auto;
+}
+
+.icon {
+  display: inline;
+  cursor: pointer;
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
 }
 
 @media (min-width: 640px) {

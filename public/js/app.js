@@ -1842,6 +1842,8 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
 $(function () {
   $("#new-row").on("click", function () {
     var newRow = $(".new-collection-row:first").clone();
@@ -1866,6 +1868,20 @@ $(function () {
     $(".collection-".concat(filterData)).each(function (i, e) {
       $(this).parent().toggle(e.innerText.toLowerCase().includes(filterValue));
     });
+  });
+  $(".icon").on("click", function () {
+    var dayId = this.dataset.dayid;
+    $("#delete-link").on("click", function () {
+      axios["delete"]("/days/".concat(dayId)).then(function (response) {
+        return console.log(response.data.alert_delete);
+      })["catch"](function (error) {
+        throw error.response.data;
+      });
+      $("#modal").modal("hide");
+      $(".icon[data-dayid=\"".concat(dayId, "\"]")).remove();
+      $("#".concat(dayId)).prop("disabled", false);
+    });
+    $("#modal").modal("show");
   });
 });
 

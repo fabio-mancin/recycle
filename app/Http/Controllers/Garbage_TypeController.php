@@ -15,7 +15,9 @@ class Garbage_TypeController extends Controller
      */
     public function index()
     {
-        //
+        $garbage_types = Garbage_Type::all();
+
+        return view('garbageindex', compact('garbage_types'));
     }
 
     /**

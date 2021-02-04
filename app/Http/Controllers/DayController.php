@@ -26,7 +26,31 @@ class DayController extends Controller
      */
     public function create()
     {
-        return view('createdays');
+        $daysInWeek = [
+            "1" => "monday",
+            "2" => "tuesday",
+            "3" => "wednesday",
+            "4" => "thursday",
+            "5" => "friday",
+            "6" => "saturday",
+            "7" => "sunday"
+        ];
+
+        $daysInDB = Day::select('name')->get()->toArray();
+
+        
+        //Log::channel('stderr')->info($daysInDB);
+
+        foreach ($daysInDB as $dayInDB) {
+
+            $key = array_search($dayInDB['name'], $daysInWeek);
+
+            $dayDetails = Day::where('name', '=', $dayInDB)->get()->toArray();
+            
+            $daysInWeek[$key] = [$dayDetails[0]['name'], $dayDetails[0]['number_in_week'], $dayDetails[0]['id']];
+        } 
+
+        return view('createdays', compact('daysInWeek'));
     }
 
     /**
@@ -97,6 +121,11 @@ class DayController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $day = Day::findOrFail($id);
+        $day->delete();
+
+        return response()->json([
+            'alert_delete' => 'Delete success.'
+        ]);
     }
 }

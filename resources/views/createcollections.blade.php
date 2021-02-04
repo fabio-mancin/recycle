@@ -58,7 +58,7 @@
                 </table>
             <button type="submit" class="btn btn-block btn-danger" form="collections-form">Save</button>
             <button type="button" id="new-row" class="btn btn-block btn-info">New Row</button>
-            <a href="{{route('collections.index')}}">
+            <a href="{{route('collections.index')}}" class="skip-button">
                 <button type="button" class="btn btn-block btn-secondary">Skip</button>
             </a>
         </div>

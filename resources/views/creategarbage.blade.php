@@ -5,7 +5,7 @@
 <div class="main">
     <div class="card push-top">
         <div class="card-header">
-            Which garbage type(s) do you want to add? At least one is need for the app to work.
+            Which garbage type(s) do you want to add? At least one is needed for the app to work.
         </div>
 
         <div class="card-body">
@@ -65,10 +65,17 @@
                         placeholder="Something, something else, another thing">
                     <div id="customHelp" class="form-text">If adding more than value, separate entries with a comma.</div>
                 </div>
-                <button type="submit" class="btn btn-block btn-danger">Add</button>
-                <a href="{{route('collections.create')}}">
-                    <button type="button" class="btn btn-block btn-secondary">Skip</button>
-                </a>
+                <div class="buttons-line">
+                    <button type="submit" class="btn btn-block btn-primary">Add</button>
+
+                    <a href="{{route('garbage_type.index')}}" class="edit-button">
+                        <button type="button" class="btn btn-block btn-danger">Edit Existing Types</button>
+                    </a>
+
+                    <a href="{{route('collections.create')}}" class="skip-button">
+                        <button type="button" class="btn btn-block btn-secondary">Skip</button>
+                    </a>
+                </div>
             </form>
         </div>
     </div>
