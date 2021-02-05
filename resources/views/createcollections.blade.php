@@ -41,7 +41,7 @@
                                     <select name="collections[]" class="form-select" form="collections-form" required>
                                         <option selected>Select a day</option>
                                         @foreach ($days as $day)
-                                            <option value={{$day->id}}>{{$day->name}}</option>
+                                            <option value={{$day->id}}>{{ ucfirst($day->name) }}</option>
                                         @endforeach
                                     </select>
                                 </td>

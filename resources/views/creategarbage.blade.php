@@ -20,6 +20,37 @@
             @endif
             <form method="POST" action="{{route('garbage_type.store')}}">
                 @csrf
+                @foreach ($standard_types as $standard_type)
+
+                    <div class="form-check">
+                        <input class="form-check-input" 
+                                type="checkbox" 
+                                name="garbage_types[]" 
+                                value="{{ $standard_type }}" 
+                                id="{{ $standard_type }}"
+                                @if (in_array(strtolower($standard_type), $existing_types))
+                                    disabled     
+                                @endif  
+                                >
+                        <label class="form-check-label" for="{{ $standard_type }}">
+                            {{ ucfirst($standard_type) }}
+                        </label>
+                    </div>
+                    
+                @endforeach
+                
+                <div class="mb-3 garbage-type-custom-input">
+                    <input type="text" 
+                        class="form-control"
+                        name="garbage_types[]"
+                        id="custom"
+                        aria-describedby="customHelp"
+                        placeholder="Something, something else, another thing">
+                    <div id="customHelp" class="form-text">If adding more than value, separate entries with a comma.</div>
+                </div>
+
+
+                <!--
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="garbage_types[]" value="glass" id="glass">
                     <label class="form-check-label" for="glass">
@@ -64,15 +95,15 @@
                         aria-describedby="customHelp"
                         placeholder="Something, something else, another thing">
                     <div id="customHelp" class="form-text">If adding more than value, separate entries with a comma.</div>
-                </div>
+                </div>-->
                 <div class="buttons-line">
                     <button type="submit" class="btn btn-block btn-primary">Add</button>
 
-                    <a href="{{route('garbage_type.index')}}" class="edit-button">
+                    <a href="{{ route('garbage_type.index') }}" class="edit-button">
                         <button type="button" class="btn btn-block btn-danger">Edit Existing Types</button>
                     </a>
 
-                    <a href="{{route('collections.create')}}" class="skip-button">
+                    <a href="{{ route('collections.create') }}" class="skip-button">
                         <button type="button" class="btn btn-block btn-secondary">Skip</button>
                     </a>
                 </div>

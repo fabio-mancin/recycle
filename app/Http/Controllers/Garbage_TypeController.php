@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Garbage_Type;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\ValidationException;
 
 class Garbage_TypeController extends Controller
 {
@@ -27,7 +27,24 @@ class Garbage_TypeController extends Controller
      */
     public function create()
     {
-        return view('creategarbage');
+        //adding a "disabled" property to the standard elements already added to the DB
+        $standard_types = [
+            "Glass", "Plastic", "Organic", "Metal", "Paper", "Batteries"
+        ];
+
+        //getting all the types in the DB
+        $existing_types = Garbage_Type::all()->toArray();
+        //if there are some..
+        if (count($existing_types)>0) {
+            //..then group them by type..
+            $existing_types = array_merge_recursive ( ...$existing_types )['type'];
+        } else {
+            //..if there are none, prevent an error and use an empty array
+            $existing_types = [];
+        }
+        
+        //the difference is parsed in the view itself
+        return view('creategarbage', compact('standard_types', 'existing_types'));
     }
 
     /**
@@ -41,7 +58,6 @@ class Garbage_TypeController extends Controller
         function recursive_add($array) {
             $array = array_filter($array);
             foreach ($array as $element) {
-                //Log::channel('stderr')->info($element);
                 if (!empty($element) && str_contains($element, ',')) {
                     $type_arr = explode(",", $element);
                     recursive_add($type_arr);
@@ -50,9 +66,11 @@ class Garbage_TypeController extends Controller
                 $new_element = new Garbage_Type();
                 $new_element->type = $element;
                 if (!Garbage_Type::select("*")
-                      ->where("type", $element)
+                      ->where("type", strtolower($element))
                       ->exists()) {                
-                $new_element->save();
+                    $new_element->save();
+                } else {
+                    throw ValidationException::withMessages(['Error!' => "That type already exists."]);
                 }
             };
         };
@@ -97,7 +115,15 @@ class Garbage_TypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //try to update the DB with the selected name
+        if (Garbage_Type::where('type', $request->garbage_type)->exists()) {
+            //throw an error if the name already exists
+            throw ValidationException::withMessages(['Error!' => "You cannot choose a name that already exists for your garbage types."]);
+        } else {
+            //update the item if it doesn't
+            Garbage_Type::findOrFail($id)->update(['type' => strtolower($request->garbage_type)]);
+            return redirect('/garbage_type');
+        }     
     }
 
     /**
@@ -108,6 +134,10 @@ class Garbage_TypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //just destroying the selected element
+        $garbage_type = Garbage_Type::findOrFail($id);
+        $garbage_type->delete();
+        
+        return redirect('/garbage_type');
     }
 }

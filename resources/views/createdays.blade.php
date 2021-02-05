@@ -19,39 +19,60 @@
                 </ul>
             </div><br />
             @endif
-            <form method="POST" action="{{route('days.store')}}">
-                @csrf
+            <form method="POST" action="{{route('days.store')}}" id="days-form">@csrf</form>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th> # </th>
+                        <th> Day </th>
+                        <th> Delete </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($standard_days as $standard_day)
+                        @php ($day_exists = in_array(strtolower($standard_day), $existing_names))
+                        <tr>
+                            <td>
+                                <div class="form-check">
+                                    <input 
+                                        class="form-check-input mr-1" 
+                                        type="checkbox" 
+                                        name="days[]"
+                                        form="days-form" 
+                                        value="{{ $standard_day }}" 
+                                        id="{{ $standard_day }}" 
+                                        @if ($day_exists) disabled @endif
+                                    >
+                                </div>
+                            </td>
+                            <td>
+                                <label class="form-check-label mr-1" for="{{ $standard_day }}">
+                                    {{ ucfirst($standard_day) }}
+                                </label> 
+                            </td>
+                            <td>
+                                @if ($day_exists)
+                                @php ($id = $existing_days->where('name', $standard_day)->first()->id)
+                                    <form class="form-inline-icon" method="POST" action="{{ route('days.destroy', $id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit">
+                                            <img src="{{ asset('images/x-square.svg') }}">
+                                        </button>
+                                    </form>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
 
-                @foreach ($daysInWeek as $n => $day)
-                <div class="form-check">
-                    <input 
-                        class="form-check-input mr-1" 
-                        type="checkbox" 
-                        name="days[]" 
-                    @if (is_array($day))
-                        value="{{$day[1] . "-" . $day[0]}}" 
-                        id="{{$day[2]}}" 
-                        disabled>
-                        <label class="form-check-label mr-1" for="{{$day[0]}}">
-                            {{ucfirst($day[0])}}
-                        </label>
-                        <img class="icon" data-dayid="{{$day[2]}}" src="{{asset('images/x-square.svg')}}">
-                    @else
-                        value="{{$n . "-" . $day}}"
-                        id="{{$day}}">
-                        <label class="form-check-label mr-1" for="{{$day}}">
-                            {{ucfirst($day)}}
-                        </label>
-                    @endif
-                </div>
+            <button type="submit" class="btn btn-block btn-primary" form="days-form">Save</button>
 
-                @endforeach
-
-                <button type="submit" class="btn btn-block btn-danger">Add</button>
-                <a href="{{route('garbage_type.create')}}" class="skip-button">
-                    <button type="button" class="btn btn-block btn-secondary">Skip</button>
-                </a>
-            </form>
+            <a href="{{route('garbage_type.create')}}" class="skip-button">
+                <button type="button" class="btn btn-block btn-secondary">Skip</button>
+            </a>
+            
         </div>
     </div>
 </div>

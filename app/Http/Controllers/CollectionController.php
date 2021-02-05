@@ -63,10 +63,8 @@ class CollectionController extends Controller
                 ->where("days_id", "=", $collection[0])
                 ->where("time", "=", $collection[2])
                 ->exists()) {
-                    Log::channel('stderr')->info("VALUE OK");
                     $new_collection->save();
                 } else {
-                    Log::channel('stderr')->info("ERROR");
                     throw ValidationException::withMessages(['Error!' => 
                         "A collection already exists on {$day} at {$collection[2]}."]);
                 }        

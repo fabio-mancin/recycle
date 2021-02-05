@@ -1,5 +1,6 @@
 require('./bootstrap');
 const axios = require('axios');
+import 'clockwork-browser/toolbar'
 
 $(function () {
     $("#new-row").on("click", function () {

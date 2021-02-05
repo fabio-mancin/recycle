@@ -26,31 +26,21 @@ class DayController extends Controller
      */
     public function create()
     {
-        $daysInWeek = [
-            "1" => "monday",
-            "2" => "tuesday",
-            "3" => "wednesday",
-            "4" => "thursday",
-            "5" => "friday",
-            "6" => "saturday",
-            "7" => "sunday"
+
+        $standard_days = [
+            "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"
         ];
 
-        $daysInDB = Day::select('name')->get()->toArray();
-
+        $existing_days = Day::all();
+        $existing_days_array = $existing_days->toArray();
+        //clock()->info($existing_days_array);
+        if (count($existing_days_array)>0) {
+            $existing_names = array_merge_recursive ( ...$existing_days_array )['name'];
+        } else {
+            $existing_days_array = [];
+        }
         
-        //Log::channel('stderr')->info($daysInDB);
-
-        foreach ($daysInDB as $dayInDB) {
-
-            $key = array_search($dayInDB['name'], $daysInWeek);
-
-            $dayDetails = Day::where('name', '=', $dayInDB)->get()->toArray();
-            
-            $daysInWeek[$key] = [$dayDetails[0]['name'], $dayDetails[0]['number_in_week'], $dayDetails[0]['id']];
-        } 
-
-        return view('createdays', compact('daysInWeek'));
+        return view('createdays', compact('standard_days', 'existing_names', 'existing_days'));
     }
 
     /**
@@ -63,17 +53,19 @@ class DayController extends Controller
     {
         $days = $request->validate([
             "days" => "required|array|min:1"
-        ]);
-        foreach ($days["days"] as $day) {
-            $day = explode("-", $day);
+        ])['days'];
+        //clock()->info($days);
+        
+        foreach ($days as $day) {
+            
             $new_day = new Day;
-            $new_day->name = $day[1];
-            $new_day->number_in_week = $day[0];
-            if (!Day::select("*")
-                      ->where("name", $day[1])
+            $new_day->name = $day;
+            $new_day->number_in_week = date('N', strtotime($day));
+            if (!Day::select("*") 
+                      ->where("name", $day)
                       ->exists()) {
                 $new_day->save();
-            }    
+            }   
         }
 
         return redirect('/garbage_type/create');
@@ -124,8 +116,6 @@ class DayController extends Controller
         $day = Day::findOrFail($id);
         $day->delete();
 
-        return response()->json([
-            'alert_delete' => 'Delete success.'
-        ]);
+        return redirect('/days/create');
     }
 }
