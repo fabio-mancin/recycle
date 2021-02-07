@@ -6,7 +6,7 @@
       <h1> Recycle Collection Recap </h1>
       <div class="filter-day-container">
         <input type="checkbox" id="filter-day" />
-        <label for="filter-day" class="ml-1">Show today only.</label>
+        <label for="filter-day">Show today only.</label>
       </div>
       <table class="table">
           <thead>
@@ -14,6 +14,7 @@
                   <th scope="col">Day</th>
                   <th scope="col">Garbage Type</th>
                   <th scope="col">Collection Time</th>
+                  <th scope="col">Delete</th>
               </tr>
           </thead>
           <tbody>
@@ -27,6 +28,15 @@
                     <td class="collection-day" data-col="day" >{{$collection->day}}</td>
                     <td class="collection-type" data-col="type" >{{$collection->type}}</td>
                     <td class="collection-time" data-col="time" >{{$collection->time}}</td>
+                    <td>
+                        <form class="form-inline-icon" method="POST" action="{{ route('collections.destroy', $collection->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">
+                                <img src="{{ asset('images/x-square.svg') }}">
+                            </button>
+                        </form>
+                    </td>
                 </tr>
               @endforeach
           </tbody>

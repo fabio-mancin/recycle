@@ -33,7 +33,7 @@
                                     <select name="collections[]" class="form-select" form="collections-form" required>
                                         <option selected>Select a garbage type</option>
                                         @foreach ($types as $type)
-                                            <option value={{$type->id}}>{{$type->type}}</option>
+                                            <option value={{ $type->id }}>{{ $type->type }}</option>
                                         @endforeach
                                     </select>
                                 </td>
@@ -41,7 +41,7 @@
                                     <select name="collections[]" class="form-select" form="collections-form" required>
                                         <option selected>Select a day</option>
                                         @foreach ($days as $day)
-                                            <option value={{$day->id}}>{{ ucfirst($day->name) }}</option>
+                                            <option value={{ $day->id }}>{{ ucfirst($day->name) }}</option>
                                         @endforeach
                                     </select>
                                 </td>
@@ -56,11 +56,17 @@
                             </tr>
                         </tbody>
                 </table>
-            <button type="submit" class="btn btn-block btn-danger" form="collections-form">Save</button>
-            <button type="button" id="new-row" class="btn btn-block btn-info">New Row</button>
-            <a href="{{route('collections.index')}}" class="skip-button">
-                <button type="button" class="btn btn-block btn-secondary">Skip</button>
-            </a>
+
+            <div class="buttons-line">
+                <button type="submit" class="btn btn-block btn-danger" form="collections-form">Save</button>
+
+                <button type="button" id="new-row" class="btn btn-block btn-info edit-button">New Row</button>
+                
+                <a href="{{route('collections.index')}}" class="skip-button">
+                    <button type="button" class="btn btn-block btn-secondary">Skip</button>
+                </a>
+            </div>
+
         </div>
     </div>
 </div>

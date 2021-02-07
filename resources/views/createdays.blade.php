@@ -66,13 +66,14 @@
                     @endforeach
                 </tbody>
             </table>
-
-            <button type="submit" class="btn btn-block btn-primary" form="days-form">Save</button>
-
-            <a href="{{route('garbage_type.create')}}" class="skip-button">
-                <button type="button" class="btn btn-block btn-secondary">Skip</button>
-            </a>
             
+            <div class="buttons-line">
+                <button type="submit" class="btn btn-block btn-primary" form="days-form">Save</button>
+
+                <a href="{{ route('garbage_type.create') }}" class="skip-button">
+                    <button type="button" class="btn btn-block btn-secondary">Skip</button>
+                </a>
+            </div>
         </div>
     </div>
 </div>

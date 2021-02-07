@@ -17,6 +17,10 @@
     @include center;
     flex-direction: column;
 
+    #filter-day {
+        margin-right: 0.3em;
+    }
+
     .main {
         width: 65%;
         height: 80%;
@@ -35,19 +39,6 @@
         }
 
         form {
-            .buttons-line {
-                display: flex;
-                width: 100%;
-                justify-content: center;
-
-                .skip-button {
-                    margin-left: auto;
-                }
-
-                .edit-button {
-                    margin-left: auto;
-                }
-            }
 
             .form-check {
                 display: flex;
@@ -79,6 +70,20 @@
                 button {
                     border: none;
                 }
+            }
+        }
+
+        .buttons-line {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+
+            .skip-button {
+                margin-left: auto;
+            }
+
+            .edit-button {
+                margin-left: auto;
             }
         }
 

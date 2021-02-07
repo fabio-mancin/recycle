@@ -48,54 +48,7 @@
                         placeholder="Something, something else, another thing">
                     <div id="customHelp" class="form-text">If adding more than value, separate entries with a comma.</div>
                 </div>
-
-
-                <!--
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="garbage_types[]" value="glass" id="glass">
-                    <label class="form-check-label" for="glass">
-                        Glass
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="garbage_types[]" value="plastic" id="plastic">
-                    <label class="form-check-label" for="plastic">
-                        Plastic
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="garbage_types[]" value="organic" id="organic">
-                    <label class="form-check-label" for="organic">
-                        Organic
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="garbage_types[]" value="metal" id="metal">
-                    <label class="form-check-label" for="metal">
-                        Metal
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="garbage_types[]" value="paper" id="paper">
-                    <label class="form-check-label" for="paper">
-                        Paper
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="garbage_types[]" value="batteries" id="batteries">
-                    <label class="form-check-label" for="batteries">
-                        Batteries
-                    </label>
-                </div>
-                <div class="mb-3 garbage-type-custom-input">
-                    <input type="text" 
-                        class="form-control"
-                        name="garbage_types[]"
-                        id="custom"
-                        aria-describedby="customHelp"
-                        placeholder="Something, something else, another thing">
-                    <div id="customHelp" class="form-text">If adding more than value, separate entries with a comma.</div>
-                </div>-->
+                
                 <div class="buttons-line">
                     <button type="submit" class="btn btn-block btn-primary">Add</button>
 

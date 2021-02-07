@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Collection;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
@@ -23,6 +22,7 @@ class CollectionController extends Controller
             $collection->day = ucfirst(DB::table('days')->where('id', $collection->days_id)->value('name'));
             $collection->number_in_week = DB::table('days')->where('id', $collection->days_id)->value('number_in_week');
             $collection->type = ucfirst(DB::table('garbage__types')->where('id', $collection->garbage_id)->value('type'));   
+            //clock()->info($collection);
         }
 
         $collections = $collections->sortBy('number_in_week');
@@ -53,9 +53,9 @@ class CollectionController extends Controller
     public function store(Request $request)
     {
         function saveCollection($collection) {
-            $new_collection = new Collection;          
-            $new_collection->days_id = $collection[0];
-            $new_collection->garbage_id = $collection[1];
+            $new_collection = new Collection;       
+            $new_collection->garbage_id = $collection[0];   
+            $new_collection->days_id = $collection[1];
             $new_collection->time = $collection[2];
             $day = ucfirst(DB::table('days')->where('id', $collection[0])->value('name'));
 
@@ -72,14 +72,11 @@ class CollectionController extends Controller
 
         $collections = $request->validate([
             "collections" => "required|array|min:1"
-        ]);
-        
-        $collections = $collections["collections"];
+        ])["collections"];
 
         if (count($collections)>3){
             $collections = array_chunk($collections, 3);
             foreach ($collections as $collection) {
-                Log::channel('stderr')->info($collection);
                 saveCollection($collection);
             }   
             return redirect('index');
@@ -132,6 +129,9 @@ class CollectionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $collection = Collection::findOrFail($id);
+        $collection->delete();
+
+        return redirect('/collections');
     }
 }

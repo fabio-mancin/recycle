@@ -13,6 +13,9 @@
   align-items: center;
   flex-direction: column;
 }
+#root #filter-day {
+  margin-right: 0.3em;
+}
 #root .main {
   width: 65%;
   height: 80%;
@@ -29,17 +32,6 @@
 }
 #root .main .card .card-header {
   font-weight: bold;
-}
-#root .main form .buttons-line {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-}
-#root .main form .buttons-line .skip-button {
-  margin-left: auto;
-}
-#root .main form .buttons-line .edit-button {
-  margin-left: auto;
 }
 #root .main form .form-check {
   display: flex;
@@ -66,6 +58,17 @@
 }
 #root .main td .form-inline-icon button {
   border: none;
+}
+#root .main .buttons-line {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+#root .main .buttons-line .skip-button {
+  margin-left: auto;
+}
+#root .main .buttons-line .edit-button {
+  margin-left: auto;
 }
 
 h1 {

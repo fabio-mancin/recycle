@@ -1,6 +1,4 @@
 require('./bootstrap');
-const axios = require('axios');
-import 'clockwork-browser/toolbar'
 
 $(function () {
     $("#new-row").on("click", function () {
@@ -23,26 +21,9 @@ $(function () {
     $(".filter-collections").on("keyup", function (e) {
         const filterValue = $(this).val().toLowerCase();
         const filterData = $(this)[0].dataset.col;
-        if (e.key === 'Tab') return false;
+        if (e.key === "Tab") return false;
         $(`.collection-${filterData}`).each(function (i, e) {
             $(this).parent().toggle(e.innerText.toLowerCase().includes(filterValue));
         });
-    });
-
-    $(".icon").on("click", function () {
-        const dayId = this.dataset.dayid;
-
-        $("#delete-link").on("click", function () {
-            axios.delete(`/days/${dayId}`)
-                .then((response) => console.log(response.data.alert_delete))
-                .catch((error) => {
-                    throw error.response.data;
-                })
-                $("#modal").modal("hide");
-                $(`.icon[data-dayid="${dayId}"]`).remove();
-                $(`#${dayId}`).prop("disabled", false);
-        });
-
-        $("#modal").modal("show");
     });
 });

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Day;
-use Illuminate\Support\Facades\Log;
 
 class DayController extends Controller
 {
@@ -33,11 +32,11 @@ class DayController extends Controller
 
         $existing_days = Day::all();
         $existing_days_array = $existing_days->toArray();
-        //clock()->info($existing_days_array);
         if (count($existing_days_array)>0) {
             $existing_names = array_merge_recursive ( ...$existing_days_array )['name'];
         } else {
             $existing_days_array = [];
+            $existing_names = [];
         }
         
         return view('createdays', compact('standard_days', 'existing_names', 'existing_days'));
@@ -54,7 +53,6 @@ class DayController extends Controller
         $days = $request->validate([
             "days" => "required|array|min:1"
         ])['days'];
-        //clock()->info($days);
         
         foreach ($days as $day) {
             
