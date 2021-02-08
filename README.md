@@ -52,7 +52,7 @@
 
 ## About The Project
 
-![Product Name Screen Shot](public\images\main.png)
+![Product Name Screen Shot](public/images/main.png)
 
 This is a simple web app developed with PHP/Laravel that I built for a start2Impact course project; it is my first PHP web app, so mistakes are extremely likely! I'd love to get your feedback :)
 
