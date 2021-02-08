@@ -14,8 +14,7 @@ class DayController extends Controller
      */
     public function index()
     {
-        /*$days = Day::all()->sortBy('number_in_week');
-        return view('index', compact('days'));*/
+        //
     }
 
     /**

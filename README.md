@@ -74,7 +74,7 @@ To get a local copy up and running follow these simple steps.
   npm install npm@latest -g
   ```
 
-* PHP Environment(Apache, PHP, MySQL) with PHP version 7.4.9+, MySQL 8+, Apache 2.4+. Depending on your OS your installation might vary; I used [WAMP](https://www.wampserver.com/) on Windows for a quick and effortless setup.
+* PHP Environment (Apache, PHP, MySQL). I used PHP 7.4.9, MySQL 8, Apache 2.4; retrocompatibility not guaranteed. Depending on your OS your installation might vary; I used [WAMP](https://www.wampserver.com/) on Windows for a quick and effortless setup.
 
 * [Composer](https://getcomposer.org/): depending on your OS follow the instructions on the official website.
 
@@ -130,6 +130,10 @@ To get a local copy up and running follow these simple steps.
 ## Usage
 
 On startup the application will guide you through the initial setup: garbage collection days, garbage types and finally garbage collection times.
+
+The app will then show the main page with the recycle days recap. You can delete existing collections from it. In addition, you can re-enter setup.
+
+Days and garbage types can be added, modified and removed through the setup.
 
 ## Roadmap
 
