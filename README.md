@@ -52,7 +52,7 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![Product Name Screen Shot](public\images\main.png)
 
 This is a simple web app developed with PHP/Laravel that I built for a start2Impact course project; it is my first PHP web app, so mistakes are extremely likely! I'd love to get your feedback :)
 
@@ -165,6 +165,7 @@ Website: [fabiomancin.org](https://fabiomancin.org)
 
 * [start2impact](start2impact.it)
 * [recycling.com](https://www.recycling.com/)
+* [clockwork](https://underground.works/clockwork/)
 
 [contributors-shield]: https://img.shields.io/github/contributors/fabio-mancin/recycle.svg?style=for-the-badge
 [contributors-url]: https://github.com/fabio-mancin/recycle/graphs/contributors
