@@ -166,15 +166,15 @@ Website: [fabiomancin.org](https://fabiomancin.org)
 * [start2impact](start2impact.it)
 * [recycling.com](https://www.recycling.com/)
 
-[contributors-shield]: https://img.shields.io/github/contributors/fabio-mancin/repo.svg?style=for-the-badge
-[contributors-url]: https://github.com/fabio-mancin/repo/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/fabio-mancin/repo.svg?style=for-the-badge
-[forks-url]: https://github.com/fabio-mancin/repo/network/members
-[stars-shield]: https://img.shields.io/github/stars/fabio-mancin/repo.svg?style=for-the-badge
-[stars-url]: https://github.com/fabio-mancin/repo/stargazers
-[issues-shield]: https://img.shields.io/github/issues/fabio-mancin/repo.svg?style=for-the-badge
-[issues-url]: https://github.com/fabio-mancin/repo/issues
-[license-shield]: https://img.shields.io/github/license/fabio-mancin/repo.svg?style=for-the-badge
-[license-url]: https://github.com/fabio-mancin/repo/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/fabio-mancin/recycle.svg?style=for-the-badge
+[contributors-url]: https://github.com/fabio-mancin/recycle/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/fabio-mancin/recycle.svg?style=for-the-badge
+[forks-url]: https://github.com/fabio-mancin/recycle/network/members
+[stars-shield]: https://img.shields.io/github/stars/fabio-mancin/recycle.svg?style=for-the-badge
+[stars-url]: https://github.com/fabio-mancin/recycle/stargazers
+[issues-shield]: https://img.shields.io/github/issues/fabio-mancin/recycle.svg?style=for-the-badge
+[issues-url]: https://github.com/fabio-mancin/recycle/issues
+[license-shield]: https://img.shields.io/github/license/fabio-mancin/recycle.svg?style=for-the-badge
+[license-url]: https://github.com/fabio-mancin/recycle/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/fabio-mancin
