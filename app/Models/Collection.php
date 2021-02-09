@@ -12,4 +12,8 @@ class Collection extends Model
     {
         return $this->belongsTo(Day::class);
     }
+    public function garbagetype()
+    {
+        return $this->belongsTo(GarbageType::class);
+    }
 }

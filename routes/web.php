@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DayController;
-use App\Http\Controllers\Garbage_TypeController;
+use App\Http\Controllers\GarbageTypeController;
 use App\Http\Controllers\CollectionController;
 
 //Root route redirects
@@ -17,4 +17,4 @@ Route::resource('days', DayController::class);
 
 Route::resource('collections', CollectionController::class);
 
-Route::resource('garbage_type', Garbage_TypeController::class);
+Route::resource('garbagetype', GarbageTypeController::class);

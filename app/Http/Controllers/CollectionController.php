@@ -19,9 +19,9 @@ class CollectionController extends Controller
         $collections = Collection::all();
 
         foreach ($collections as $collection) {
-            $collection->day = ucfirst(DB::table('days')->where('id', $collection->days_id)->value('name'));
-            $collection->number_in_week = DB::table('days')->where('id', $collection->days_id)->value('number_in_week');
-            $collection->type = ucfirst(DB::table('garbage__types')->where('id', $collection->garbage_id)->value('type'));   
+            $collection->day = ucfirst(DB::table('days')->where('id', $collection->day_id)->value('name'));
+            $collection->number_in_week = DB::table('days')->where('id', $collection->day_id)->value('number_in_week');
+            $collection->type = ucfirst(DB::table('garbagetypes')->where('id', $collection->garbagetype_id)->value('type'));   
             //clock()->info($collection);
         }
 
@@ -37,7 +37,7 @@ class CollectionController extends Controller
      */
     public function create()
     {
-        $types = DB::table('garbage__types')->get();
+        $types = DB::table('garbagetypes')->get();
         $days = DB::table('days')->get();
 
         return view('createcollections', ['types' => $types,
@@ -54,13 +54,13 @@ class CollectionController extends Controller
     {
         function saveCollection($collection) {
             $new_collection = new Collection;       
-            $new_collection->garbage_id = $collection[0];   
-            $new_collection->days_id = $collection[1];
+            $new_collection->garbagetype_id = $collection[0];   
+            $new_collection->day_id = $collection[1];
             $new_collection->time = $collection[2];
             $day = ucfirst(DB::table('days')->where('id', $collection[0])->value('name'));
 
             if (!Collection::select("*")
-                ->where("days_id", "=", $collection[0])
+                ->where("day_id", "=", $collection[0])
                 ->where("time", "=", $collection[2])
                 ->exists()) {
                     $new_collection->save();

@@ -34,8 +34,10 @@ class DayController extends Controller
         if (count($existing_days_array)>0) {
             $existing_names = array_merge_recursive ( ...$existing_days_array )['name'];
         } else {
-            $existing_days_array = [];
             $existing_names = [];
+        }
+        if (is_string($existing_names)) {
+            $existing_names = [$existing_names];
         }
         
         return view('createdays', compact('standard_days', 'existing_names', 'existing_days'));
@@ -65,7 +67,7 @@ class DayController extends Controller
             }   
         }
 
-        return redirect('/garbage_type/create');
+        return redirect('/garbagetype/create');
     }
 
     /**

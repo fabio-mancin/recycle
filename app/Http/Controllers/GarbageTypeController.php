@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Garbage_Type;
+use App\Models\GarbageType;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Log;
 
-class Garbage_TypeController extends Controller
+class GarbageTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,9 @@ class Garbage_TypeController extends Controller
      */
     public function index()
     {
-        $garbage_types = Garbage_Type::all();
+        $garbagetypes = GarbageType::all();
 
-        return view('garbageindex', compact('garbage_types'));
+        return view('garbageindex', compact('garbagetypes'));
     }
 
     /**
@@ -29,11 +30,11 @@ class Garbage_TypeController extends Controller
     {
         //adding a "disabled" property to the standard elements already added to the DB
         $standard_types = [
-            "Glass", "Plastic", "Organic", "Metal", "Paper", "Batteries"
+            "glass", "plastic", "organic", "metal", "paper", "batteries"
         ];
 
         //getting all the types in the DB
-        $existing_types = Garbage_Type::all()->toArray();
+        $existing_types = GarbageType::all()->toArray();
         //if there are some..
         if (count($existing_types)>0) {
             //..then group them by type..
@@ -42,7 +43,11 @@ class Garbage_TypeController extends Controller
             //..if there are none, prevent an error and use an empty array
             $existing_types = [];
         }
-        
+
+        if (is_string($existing_types)) {
+            $existing_types = [$existing_types];
+        }
+
         //the difference is parsed in the view itself
         return view('creategarbage', compact('standard_types', 'existing_types'));
     }
@@ -63,9 +68,9 @@ class Garbage_TypeController extends Controller
                     recursive_add($type_arr);
                     continue;
                 }
-                $new_element = new Garbage_Type();
+                $new_element = new GarbageType();
                 $new_element->type = $element;
-                if (!Garbage_Type::select("*")
+                if (!GarbageType::select("*")
                       ->where("type", strtolower($element))
                       ->exists()) {                
                     $new_element->save();
@@ -76,10 +81,10 @@ class Garbage_TypeController extends Controller
         };
 
         $types = $request->validate([
-            "garbage_types" => "array|min:1"
+            "garbagetypes" => "array|min:1"
         ]);
         
-        recursive_add($types["garbage_types"]);
+        recursive_add($types["garbagetypes"]);
         
         return redirect('/collections/create');
     }
@@ -116,13 +121,13 @@ class Garbage_TypeController extends Controller
     public function update(Request $request, $id)
     {
         //try to update the DB with the selected name
-        if (Garbage_Type::where('type', $request->garbage_type)->exists()) {
+        if (GarbageType::where('type', $request->garbagetype)->exists()) {
             //throw an error if the name already exists
             throw ValidationException::withMessages(['Error!' => "You cannot choose a name that already exists for your garbage types."]);
         } else {
             //update the item if it doesn't
-            Garbage_Type::findOrFail($id)->update(['type' => strtolower($request->garbage_type)]);
-            return redirect('/garbage_type');
+            GarbageType::findOrFail($id)->update(['type' => strtolower($request->garbagetype)]);
+            return redirect('/garbagetype');
         }     
     }
 
@@ -135,9 +140,9 @@ class Garbage_TypeController extends Controller
     public function destroy($id)
     {
         //just destroying the selected element
-        $garbage_type = Garbage_Type::findOrFail($id);
-        $garbage_type->delete();
+        $garbagetype = GarbageType::findOrFail($id);
+        $garbagetype->delete();
         
-        return redirect('/garbage_type');
+        return redirect('/garbagetype');
     }
 }

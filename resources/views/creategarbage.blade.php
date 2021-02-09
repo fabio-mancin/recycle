@@ -18,17 +18,16 @@
                 </ul>
             </div><br />
             @endif
-            <form method="POST" action="{{route('garbage_type.store')}}">
+            <form method="POST" action="{{route('garbagetype.store')}}">
                 @csrf
                 @foreach ($standard_types as $standard_type)
-
                     <div class="form-check">
                         <input class="form-check-input" 
                                 type="checkbox" 
-                                name="garbage_types[]" 
+                                name="garbagetypes[]" 
                                 value="{{ $standard_type }}" 
                                 id="{{ $standard_type }}"
-                                @if (in_array(strtolower($standard_type), $existing_types))
+                                @if (in_array(strtolower($standard_type), $existing_types, true))
                                     disabled     
                                 @endif  
                                 >
@@ -42,7 +41,7 @@
                 <div class="mb-3 garbage-type-custom-input">
                     <input type="text" 
                         class="form-control"
-                        name="garbage_types[]"
+                        name="garbagetypes[]"
                         id="custom"
                         aria-describedby="customHelp"
                         placeholder="Something, something else, another thing">
@@ -52,7 +51,7 @@
                 <div class="buttons-line">
                     <button type="submit" class="btn btn-block btn-primary">Add</button>
 
-                    <a href="{{ route('garbage_type.index') }}" class="edit-button">
+                    <a href="{{ route('garbagetype.index') }}" class="edit-button">
                         <button type="button" class="btn btn-block btn-danger">Edit Existing Types</button>
                     </a>
 

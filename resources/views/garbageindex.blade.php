@@ -26,20 +26,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($garbage_types as $type)
+                        @foreach ($garbagetypes as $type)
                             <tr class="mb-3">
                                 <td>
-                                    <form class="form-inline-icon" method="POST" action="{{ route('garbage_type.update', [$type->id]) }}">
+                                    <form class="form-inline-icon" method="POST" action="{{ route('garbagetype.update', [$type->id]) }}">
                                         @csrf
                                         @method('PUT')
-                                        <input class="form-control" value="{{ ucfirst($type->type) }}" name="garbage_type" placeholder="{{ ucfirst($type->type) }}" />
+                                        <input class="form-control" value="{{ ucfirst($type->type) }}" name="garbagetype" placeholder="{{ ucfirst($type->type) }}" />
                                         <button type="submit">
                                             <img src="{{ asset('images/edit.svg') }}">
                                         </button>
                                     </form>
                                 </td>
                                 <td>
-                                    <form class="form-inline-icon" method="POST" action="{{ route('garbage_type.destroy', [$type->id]) }}">
+                                    <form class="form-inline-icon" method="POST" action="{{ route('garbagetype.destroy', [$type->id]) }}">
                                         @csrf
                                         @method('DELETE')
                                         <input type=image src="{{ asset('images/x-square.svg') }}" alt="Delete entry">
@@ -49,7 +49,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                <a href="{{ route('garbage_type.create') }}" class="skip-button">
+                <a href="{{ route('garbagetype.create') }}" class="skip-button">
                     <button type="button" class="btn btn-block btn-secondary"> Back </button>
                 </a>
         </div>
