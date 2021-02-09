@@ -75,7 +75,7 @@
                     <button type="button" class="btn btn-block btn-warning">Skip</button>
                 </a>
 
-                <a href="{{ URL::previous() }}" class="middle-button">
+                <a href="{{ route('collections.index') }}" class="middle-button">
                     <button type="button" class="btn btn-block btn-secondary">Back</button>
                 </a>
                 <button type="submit" class="btn btn-block btn-primary right-button" form="days-form">Save</button>

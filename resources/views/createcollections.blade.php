@@ -66,11 +66,11 @@
 
                 <button type="button" id="new-row" class="btn btn-block btn-info middle-button">New Row</button>
 
-                <a href="{{ URL::previous() }}" class="middle-button">
+                <a href="{{ route('garbagetype.create') }}" class="middle-button">
                     <button type="button" class="btn btn-block btn-secondary">Back</button>
                 </a>
                 
-                <a href="{{route('collections.index')}}" class="right-button">
+                <a href="{{ route('collections.index') }}" class="right-button">
                     <button type="button" class="btn btn-block btn-warning">Skip</button>
                 </a>
             </div>

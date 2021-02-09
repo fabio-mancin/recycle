@@ -59,7 +59,7 @@
                         <button type="button" class="btn btn-block btn-danger">Edit Existing Types</button>
                     </a>
 
-                    <a href="{{ URL::previous() }}" class="middle-button">
+                    <a href="{{ route('days.create') }}" class="middle-button">
                         <button type="button" class="btn btn-block btn-secondary">Back</button>
                     </a>
 
