@@ -4,9 +4,12 @@
 
 <div class="main">
     <div class="card push-top">
+        <a class="no-style" href="{{ route('collections.index') }}">
+            <img src="{{ asset('images/home.svg') }}"> Home
+        </a>
         <div class="card-header">
-            Which day(s) do you want to add to the recycle weekly plan? At least one day needs to be set up in order to
-            use the app.
+            
+            Which day(s) do you want to add to the recycle weekly plan?
         </div>
 
         <div class="card-body">
@@ -68,11 +71,14 @@
             </table>
             
             <div class="buttons-line">
-                <button type="submit" class="btn btn-block btn-primary" form="days-form">Save</button>
-
-                <a href="{{ route('garbagetype.create') }}" class="skip-button">
-                    <button type="button" class="btn btn-block btn-secondary">Skip</button>
+                <a href="{{ route('garbagetype.create') }}">
+                    <button type="button" class="btn btn-block btn-warning">Skip</button>
                 </a>
+
+                <a href="{{ URL::previous() }}" class="middle-button">
+                    <button type="button" class="btn btn-block btn-secondary">Back</button>
+                </a>
+                <button type="submit" class="btn btn-block btn-primary right-button" form="days-form">Save</button>
             </div>
         </div>
     </div>

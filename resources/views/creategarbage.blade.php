@@ -3,7 +3,11 @@
 @section('content')
 
 <div class="main">
+    
     <div class="card push-top">
+        <a class="no-style" href="{{ route('collections.index') }}">
+            <img src="{{ asset('images/home.svg') }}"> Home
+        </a>
         <div class="card-header">
             Which garbage type(s) do you want to add? At least one is needed for the app to work.
         </div>
@@ -49,15 +53,21 @@
                 </div>
                 
                 <div class="buttons-line">
-                    <button type="submit" class="btn btn-block btn-primary">Add</button>
+                    
 
-                    <a href="{{ route('garbagetype.index') }}" class="edit-button">
+                    <a href="{{ route('garbagetype.index') }}" class="middle-button">
                         <button type="button" class="btn btn-block btn-danger">Edit Existing Types</button>
                     </a>
 
-                    <a href="{{ route('collections.create') }}" class="skip-button">
-                        <button type="button" class="btn btn-block btn-secondary">Skip</button>
+                    <a href="{{ URL::previous() }}" class="middle-button">
+                        <button type="button" class="btn btn-block btn-secondary">Back</button>
                     </a>
+
+                    <a href="{{ route('collections.create') }}">
+                        <button type="button" class="btn btn-block btn-warning">Skip</button>
+                    </a>
+
+                    <button type="submit" class="btn btn-block btn-primary right-button">Add</button>
                 </div>
             </form>
         </div>

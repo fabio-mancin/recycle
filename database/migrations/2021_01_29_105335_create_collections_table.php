@@ -17,7 +17,7 @@ class CreateCollectionsTable extends Migration
             $table->increments('id');
             $table->string('time');
             $table->foreignId('day_id')->constrained()->onDelete('cascade');
-            $table->foreignId('garbagetype_id')->constrained()->onDelete('cascade');
+            $table->foreignId('garbagetype_id')->constrained('garbagetypes')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -10740,6 +10740,16 @@ textarea.form-control-lg {
   align-items: center;
   flex-direction: column;
 }
+#root a.no-style:link {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+#root a.no-style:visited {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: pointer;
+}
 #root #filter-day {
   margin-right: 0.3em;
 }
@@ -10791,10 +10801,10 @@ textarea.form-control-lg {
   width: 100%;
   justify-content: center;
 }
-#root .main .buttons-line .skip-button {
+#root .main .buttons-line .right-button {
   margin-left: auto;
 }
-#root .main .buttons-line .edit-button {
+#root .main .buttons-line .middle-button {
   margin-left: auto;
 }
 

@@ -3,7 +3,11 @@
 @section('content')
 
 <div class="main">
+    
     <div class="card push-top">
+        <a class="no-style" href="{{ route('collections.index') }}">
+            <img src="{{ asset('images/home.svg') }}"> Home
+        </a>
         <div class="card-header">
             Choose the day and time for recycling garbage collection.
         </div>
@@ -60,10 +64,14 @@
             <div class="buttons-line">
                 <button type="submit" class="btn btn-block btn-danger" form="collections-form">Save</button>
 
-                <button type="button" id="new-row" class="btn btn-block btn-info edit-button">New Row</button>
+                <button type="button" id="new-row" class="btn btn-block btn-info middle-button">New Row</button>
+
+                <a href="{{ URL::previous() }}" class="middle-button">
+                    <button type="button" class="btn btn-block btn-secondary">Back</button>
+                </a>
                 
-                <a href="{{route('collections.index')}}" class="skip-button">
-                    <button type="button" class="btn btn-block btn-secondary">Skip</button>
+                <a href="{{route('collections.index')}}" class="right-button">
+                    <button type="button" class="btn btn-block btn-warning">Skip</button>
                 </a>
             </div>
 

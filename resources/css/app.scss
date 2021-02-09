@@ -19,6 +19,18 @@
     @include center;
     flex-direction: column;
 
+    a.no-style:link {
+        text-decoration: inherit;
+        color: inherit;
+        cursor: pointer;
+    }
+    
+    a.no-style:visited {
+        text-decoration: inherit;
+        color: inherit;
+        cursor: pointer;
+    }
+
     #filter-day {
         margin-right: 0.3em;
     }
@@ -80,11 +92,11 @@
             width: 100%;
             justify-content: center;
 
-            .skip-button {
+            .right-button {
                 margin-left: auto;
             }
 
-            .edit-button {
+            .middle-button {
                 margin-left: auto;
             }
         }
