@@ -10,12 +10,18 @@
       </div>
       <table class="table">
           <thead>
-              <tr>
-                  <th scope="col">Day</th>
-                  <th scope="col">Garbage Type</th>
-                  <th scope="col">Collection Time</th>
-                  <th scope="col">Delete</th>
-              </tr>
+                <tr>                 
+                    <th scope="col">
+                        <a href="{{ route('days.create') }}" class="no-style">Day</a>
+                    </th>                       
+                    <th scope="col">
+                        <a href="{{ route('garbagetype.create') }}" class="no-style">Garbage Type</a>
+                    </th>
+                    <th scope="col">
+                        <a href="{{ route('collections.create') }}" class="no-style">Collection Time</a>
+                    </th>
+                    <th scope="col">Delete</th>
+                </tr>
           </thead>
           <tbody>
                 <tr>

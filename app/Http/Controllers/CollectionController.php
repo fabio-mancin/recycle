@@ -22,7 +22,6 @@ class CollectionController extends Controller
             $collection->day = ucfirst(DB::table('days')->where('id', $collection->day_id)->value('name'));
             $collection->number_in_week = DB::table('days')->where('id', $collection->day_id)->value('number_in_week');
             $collection->type = ucfirst(DB::table('garbagetypes')->where('id', $collection->garbagetype_id)->value('type'));   
-            //clock()->info($collection);
         }
 
         $collections = $collections->sortBy('number_in_week');
@@ -53,20 +52,23 @@ class CollectionController extends Controller
     public function store(Request $request)
     {
         function saveCollection($collection) {
+            $garbagetype_id = $collection[0]; 
+            $day_id = $collection[1];
+            $collection_time = $collection[2];
             $new_collection = new Collection;       
-            $new_collection->garbagetype_id = $collection[0];   
-            $new_collection->day_id = $collection[1];
-            $new_collection->time = $collection[2];
-            $day = ucfirst(DB::table('days')->where('id', $collection[0])->value('name'));
+            $new_collection->garbagetype_id = $garbagetype_id;   
+            $new_collection->day_id = $day_id;
+            $new_collection->time = $collection_time;
+            $day = ucfirst(DB::table('days')->where('id', $day_id)->value('name'));
 
             if (!Collection::select("*")
-                ->where("day_id", "=", $collection[0])
-                ->where("time", "=", $collection[2])
+                ->where("day_id", $day_id)
+                ->where("time", $collection_time)
                 ->exists()) {
                     $new_collection->save();
                 } else {
                     throw ValidationException::withMessages(['Error!' => 
-                        "A collection already exists on {$day} at {$collection[2]}."]);
+                        "A collection already exists on {$day} at {$collection_time}."]);
                 }        
         }
 

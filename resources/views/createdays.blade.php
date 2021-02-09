@@ -5,7 +5,7 @@
 <div class="main">
     <div class="card push-top">
         <a class="no-style" href="{{ route('collections.index') }}">
-            <img src="{{ asset('images/home.svg') }}"> Home
+            <img src="{{ asset('images/home.svg') }}"> <span class="fw-bold">Home</span>
         </a>
         <div class="card-header">
             
@@ -26,7 +26,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th> # </th>
+                        <th> </th>
                         <th> Day </th>
                         <th> Delete </th>
                     </tr>

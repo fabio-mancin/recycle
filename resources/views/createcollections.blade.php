@@ -6,7 +6,7 @@
     
     <div class="card push-top">
         <a class="no-style" href="{{ route('collections.index') }}">
-            <img src="{{ asset('images/home.svg') }}"> Home
+            <img src="{{ asset('images/home.svg') }}"> <span class="fw-bold">Home</span>
         </a>
         <div class="card-header">
             Choose the day and time for recycling garbage collection.
@@ -37,7 +37,7 @@
                                     <select name="collections[]" class="form-select" form="collections-form" required>
                                         <option selected>Select a garbage type</option>
                                         @foreach ($types as $type)
-                                            <option value={{ $type->id }}>{{ $type->type }}</option>
+                                            <option value={{ $type->id }}>{{ ucfirst($type->type) }}</option>
                                         @endforeach
                                     </select>
                                 </td>

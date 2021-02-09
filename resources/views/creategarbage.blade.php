@@ -6,7 +6,7 @@
     
     <div class="card push-top">
         <a class="no-style" href="{{ route('collections.index') }}">
-            <img src="{{ asset('images/home.svg') }}"> Home
+            <img src="{{ asset('images/home.svg') }}"> <span class="fw-bold">Home</span>
         </a>
         <div class="card-header">
             Which garbage type(s) do you want to add? At least one is needed for the app to work.
@@ -63,7 +63,7 @@
                         <button type="button" class="btn btn-block btn-secondary">Back</button>
                     </a>
 
-                    <a href="{{ route('collections.create') }}">
+                    <a href="{{ route('collections.create') }}" class="middle-button">
                         <button type="button" class="btn btn-block btn-warning">Skip</button>
                     </a>
 
