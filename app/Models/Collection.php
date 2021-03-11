@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Collection extends Model
 {
     use HasFactory;
+    public function day()
+    {
+        return $this->belongsTo(Day::class);
+    }
+    public function garbagetype()
+    {
+        return $this->belongsTo(GarbageType::class);
+    }
 }

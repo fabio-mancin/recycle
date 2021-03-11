@@ -1844,10 +1844,28 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 $(function () {
   $("#new-row").on("click", function () {
-    var newRow = document.createElement("tr");
-    newRow.innerHTML = $("#new-collection-row-template").html();
-    newRow.className = "new-collection-row";
+    var newRow = $(".new-collection-row:first").clone();
+    newRow[0].children[2].children[0].value = "";
     $("#collection-table-body").prepend(newRow);
+  });
+  $("#filter-day").on("change", function (e) {
+    var todayNumberInWeek = new Date().getDay();
+    var todayRows = $(".day-row[data-number-in-week=\"".concat(todayNumberInWeek, "\""));
+
+    if ($(e.target).is(":checked")) {
+      $(".day-row").hide();
+      todayRows.show();
+    } else {
+      $(".day-row").show();
+    }
+  });
+  $(".filter-collections").on("keyup", function (e) {
+    var filterValue = $(this).val().toLowerCase();
+    var filterData = $(this)[0].dataset.col;
+    if (e.key === "Tab") return false;
+    $(".collection-".concat(filterData)).each(function (i, e) {
+      $(this).parent().toggle(e.innerText.toLowerCase().includes(filterValue));
+    });
   });
 });
 
@@ -29932,10 +29950,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 /***/ }),
 
-/***/ "./resources/css/app.css":
-/*!*******************************!*\
-  !*** ./resources/css/app.css ***!
-  \*******************************/
+/***/ "./resources/css/app.scss":
+/*!********************************!*\
+  !*** ./resources/css/app.scss ***!
+  \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -30224,7 +30242,7 @@ process.umask = function() { return 0; };
 /******/ 		
 /******/ 		var deferredModules = [
 /******/ 			["./resources/js/app.js"],
-/******/ 			["./resources/css/app.css"]
+/******/ 			["./resources/css/app.scss"]
 /******/ 		];
 /******/ 		// no chunk on demand loading
 /******/ 		

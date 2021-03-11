@@ -1,0 +1,111 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+
+@mixin center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+#root {
+    width: 100vw;
+    height: 100vh;
+    @include center;
+    flex-direction: column;
+
+    a.no-style:link {
+        text-decoration: inherit;
+        color: inherit;
+        cursor: pointer;
+    }
+    
+    a.no-style:visited {
+        text-decoration: inherit;
+        color: inherit;
+        cursor: pointer;
+    }
+
+    #filter-day {
+        margin-right: 0.3em;
+    }
+
+    .main {
+        width: 65%;
+        height: 80%;
+        @include center;
+        flex-direction: column;
+
+        .filter-day-container {
+            @include center;
+            align-self: flex-start;
+        }
+
+        .card {
+            .card-header {
+                font-weight: bold;
+            }
+        }
+
+        form {
+
+            .form-check {
+                display: flex;
+                align-items: center;
+
+                .form-check-input {
+                    margin-right: 0.2em;
+                }
+            }
+        }
+
+        td {
+            .form-inline-icon {
+                @include center;
+                width: 100%;
+                height: 40px;
+                
+                .form-control {
+                    width: 90%;
+                    margin-right: 0.3em;
+                }
+
+                img {
+                    cursor: pointer;
+                    width: 25px;
+                    height: 25px;
+                }
+
+                button {
+                    border: none;
+                }
+            }
+        }
+
+        .buttons-line {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+
+            .right-button {
+                margin-left: auto;
+            }
+
+            .middle-button {
+                margin-left: auto;
+            }
+        }
+
+    }
+
+}
+
+h1 {
+    font-size: 3ch;
+    font-weight: bold;
+}

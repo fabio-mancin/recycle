@@ -13,7 +13,7 @@ class CreateGarbageTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('garbage__types', function (Blueprint $table) {
+        Schema::create('garbagetypes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('type');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateGarbageTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('garbage__types');
+        Schema::dropIfExists('garbagetypes');
     }
 }

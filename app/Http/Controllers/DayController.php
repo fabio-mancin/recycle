@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Day;
-use Illuminate\Support\Facades\Log;
 
 class DayController extends Controller
 {
@@ -15,8 +14,7 @@ class DayController extends Controller
      */
     public function index()
     {
-        /*$days = Day::all()->sortBy('number_in_week');
-        return view('index', compact('days'));*/
+        return redirect('/days/create');
     }
 
     /**
@@ -26,7 +24,23 @@ class DayController extends Controller
      */
     public function create()
     {
-        return view('createdays');
+
+        $standard_days = [
+            "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"
+        ];
+
+        $existing_days = Day::all();
+        $existing_days_array = $existing_days->toArray();
+        if (count($existing_days_array)>0) {
+            $existing_names = array_merge_recursive ( ...$existing_days_array )['name'];
+        } else {
+            $existing_names = [];
+        }
+        if (is_string($existing_names)) {
+            $existing_names = [$existing_names];
+        }
+        
+        return view('createdays', compact('standard_days', 'existing_names', 'existing_days'));
     }
 
     /**
@@ -39,20 +53,21 @@ class DayController extends Controller
     {
         $days = $request->validate([
             "days" => "required|array|min:1"
-        ]);
-        foreach ($days["days"] as $day) {
-            $day = explode("-", $day);
+        ])['days'];
+        
+        foreach ($days as $day) {
+            
             $new_day = new Day;
-            $new_day->name = $day[1];
-            $new_day->number_in_week = $day[0];
-            if (!Day::select("*")
-                      ->where("name", $day[1])
+            $new_day->name = $day;
+            $new_day->number_in_week = date('N', strtotime($day));
+            if (!Day::select("*") 
+                      ->where("name", $day)
                       ->exists()) {
                 $new_day->save();
-            }    
+            }   
         }
 
-        return redirect('/garbage_type/create');
+        return redirect('/garbagetype/create');
     }
 
     /**
@@ -97,6 +112,9 @@ class DayController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $day = Day::findOrFail($id);
+        $day->delete();
+
+        return redirect('/days/create');
     }
 }

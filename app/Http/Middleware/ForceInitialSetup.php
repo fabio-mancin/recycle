@@ -21,7 +21,7 @@ class ForceInitialSetup
         if ($days == 0) {
             return redirect('days/create');
         } else {
-            return redirect('days');
+            return redirect('collections');
         }
     }
 }
